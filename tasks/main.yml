@@ -1,0 +1,20 @@
+- name: Download Python
+  win_get_url:
+    url: https://www.python.org/ftp/python/{{ python_vers }}/python-{{ python_vers }}-amd64.exe
+    dest: '{{ working_dir }}\python-{{ python_vers }}.exe'
+
+- name: Install Python
+  win_package:
+    path: '{{ working_dir }}\python-{{ python_vers }}.exe'
+    product_id: '{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}'
+    arguments: '/quiet TargetDir="{{ python_path }}" InstallAllUsers=1 PrependPath=1 Include_test=0'
+
+- name: Remove Python Installer
+  win_file:
+    path: '{{ working_dir }}\python-{{ python_vers }}.exe'
+    state: absent
+
+- name: Ensure that Python.exe Path is in Path ENV
+  ansible.windows.win_path:
+    elements:
+    - '{{ python_path }}\bin'

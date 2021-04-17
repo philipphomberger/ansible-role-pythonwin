@@ -1,0 +1,10 @@
+galaxy_info:
+  role_name: ansible-role-pythonwin
+  author: Philipp Homberger
+  description: Install Python on a Windows System
+  company: Philipp Homberger
+  license: MIT
+  min_ansible_version: 2.8
+
+  galaxy_tags: []
+dependencies: []
